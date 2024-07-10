@@ -17,7 +17,7 @@ export default {
       // },
     },
     fontFamily: {
-      sans: ["Montserrat", "Padauk", "sans-serif"],
+      sans: ["Montserrat","Padauk", "sans-serif"],
     },
     extend: {},
   },

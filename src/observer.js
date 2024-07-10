@@ -1,6 +1,7 @@
 import { recordGroupObserver } from "./record";
 
 const observer = () => {
-     recordGroupObserver();
+  recordGroupObserver();
 };
+
 export default observer;

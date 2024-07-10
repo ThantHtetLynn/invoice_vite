@@ -1,7 +1,7 @@
 import {
   newProductName,
   newProductPrice,
-  productCartTemplate,
+  productCardTemplate,
   productGroup,
   productSelect,
 } from "./selectors";
@@ -9,17 +9,19 @@ import { v4 as uuidv4 } from "uuid";
 import { products } from "./states";
 
 export const addNewProductBtnHandler = () => {
-  //  console.log("add new product");
   const createId = uuidv4();
   productGroup.append(
-    createProductCart(
+    createProductCard(
       createId,
       newProductName.value,
       newProductPrice.valueAsNumber
     )
   );
   productSelect.append(
-    new Option(`${newProductName.value} - ${newProductPrice.valueAsNumber}`, createId)
+    new Option(
+      `${newProductName.value} - ${newProductPrice.valueAsNumber}`,
+      createId
+    )
   );
 
   products.push({
@@ -36,21 +38,21 @@ export const addNewProductBtnHandler = () => {
 
 export const productRender = (products) => {
   products.forEach(({ id, name, price }) => {
-    productGroup.append(createProductCart(id, name, price));
+    productGroup.append(createProductCard(id, name, price));
     productSelect.append(new Option(`${name} - ${price}`, id));
   });
 };
 
-export const createProductCart = (id, name, price) => {
-  const productCart = productCartTemplate.content.cloneNode(true);
-  const productName = productCart.querySelector(".product-name");
-  const productPrice = productCart.querySelector(".product-price");
-  const currentProductCart = productCart.querySelector(".product-card");
+export const createProductCard = (id, name, price) => {
+  const productCard = productCardTemplate.content.cloneNode(true);
+  const currentProductCard = productCard.querySelector(".product-card");
+  const productName = productCard.querySelector(".product-name");
+  const productPrice = productCard.querySelector(".product-price");
 
-  currentProductCart.id = id;
+  currentProductCard.id = id;
 
   productName.innerText = name;
   productPrice.innerText = price;
 
-  return productCart;
+  return productCard;
 };
